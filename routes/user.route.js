@@ -9,7 +9,7 @@ const {
 
 const verifyToken = require("../middleware/auth")
 
-route.get("/",verifyToken, getAllUser);
+route.get("/", getAllUser);
 route.get("/:id", verifyToken, getUserById);
 route.post("/", createUser);
 

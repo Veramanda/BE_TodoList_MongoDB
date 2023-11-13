@@ -2,8 +2,7 @@ const User = require('../models/user');
 
 module.exports = {
   getAllUser: async (req, res) => {
-    const user = req.user
-    const users = await User.find({userID: user.id})
+    const users = await User.find()
 
     res.json({
       message: "berhasil mendapatkan data user",
