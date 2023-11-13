@@ -20,7 +20,7 @@ module.exports = {
     await User.create(data)
 
     res.json({
-      message: "berhasil membuat data user"
+      message: "Berhasil Membuat Data User"
     })
   },
 }
