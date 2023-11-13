@@ -16,7 +16,7 @@ route.get("/", getAllTodo);
 route.get("/:id/todos", verifyToken, getTodoById)
 route.post("/", createTodo);
 route.put("/:id/update", updateTodo);
-route.delete("/", deleteTodoId);
+route.delete("/:id/delete", deleteTodoId);
 route.delete("/", deleteAllTodos);
 
 module.exports = route;
