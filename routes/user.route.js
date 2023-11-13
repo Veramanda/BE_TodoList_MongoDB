@@ -7,8 +7,10 @@ const {
   createUser,
 } = require("../controllers/user.controller");
 
-route.get("/", getAllUser);
-route.get("/:id", getUserById);
+const verifyToken = require("../middleware/auth")
+
+route.get("/",verifyToken, getAllUser);
+route.get("/:id", verifyToken, getUserById);
 route.post("/", createUser);
 
 module.exports = route;

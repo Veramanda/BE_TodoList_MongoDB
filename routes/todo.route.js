@@ -10,8 +10,10 @@ const {
   deleteAllTodos
 } = require("../controllers/todo.controller");
 
+const verifyToken = require("../middleware/auth")
+
 route.get("/", getAllTodo);
-route.get("/:id/todos", getTodoById)
+route.get("/:id/todos", verifyToken, getTodoById)
 route.post("/", createTodo);
 route.put("/:id/update", updateTodo);
 route.delete("/", deleteTodoId);
