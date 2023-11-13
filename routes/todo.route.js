@@ -5,14 +5,16 @@ const {
   getAllTodo,
   getTodoById,
   createTodo,
-  deleteTodo,
-  updateTodo
+  updateTodo,
+  deleteTodoId,
+  deleteAllTodos
 } = require("../controllers/todo.controller");
 
 route.get("/", getAllTodo);
-route.get("/:id", getTodoById);
+route.get("/:id/todos", getTodoById)
 route.post("/", createTodo);
-route.put("/", updateTodo);
-route.delete("/", deleteTodo);
+route.put("/:id/update", updateTodo);
+route.delete("/", deleteTodoId);
+route.delete("/", deleteAllTodos);
 
 module.exports = route;

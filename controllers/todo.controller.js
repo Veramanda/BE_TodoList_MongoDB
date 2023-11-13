@@ -10,8 +10,12 @@ module.exports = {
     })
   },
 
-  getTodoById:(req, res) => {
+  getTodoById: async (req, res) => {
+    const {id} = req.params
 
+    const todos = await Todo.find({userID: id})
+
+    res.json(todos)
   },
 
   createTodo:  async (req, res) => {
@@ -20,7 +24,7 @@ module.exports = {
     await Todo.create(data)
 
     res.json({
-      message: "berhasil membuat data todo"
+      message: "Berhasil membuat data todo"
     })
   },
 
@@ -42,7 +46,7 @@ module.exports = {
     }
   },
 
-  deleteTodo: async (req, res) => {
+  deleteTodoId: async (req, res) => {
     try {
       const deletedTodo = await Todo.findByIdAndRemove(req.params.id);
       if (deletedTodo) {
@@ -58,6 +62,20 @@ module.exports = {
     } catch (error) {
       res.status(500).json({
         error: 'Gagal menghapus data todo',
+      });
+    }
+  },
+
+  deleteAllTodos: async (req, res) => {
+    try {
+      const deletedTodos = await Todo.deleteMany({ userID: req.user._id });
+      res.json({
+        message: 'Berhasil menghapus semua data todo',
+        data: deletedTodos,
+      });
+    } catch (error) {
+      res.status(500).json({
+        error: 'Gagal menghapus semua data todo',
       });
     }
   }
